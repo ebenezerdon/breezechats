@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BreezeChats – App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+</head>
+<body class="antialiased bg-[#F7F9FC] text-[#0F172A] min-h-screen flex flex-col" style="font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;">
+  <header class="w-full border-b border-black/5 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center gap-3">
+      <a href="index.html" class="shrink-0" aria-label="Home">
+        <img src="images/logo.svg" alt="BreezeChats logo" class="h-7 w-7">
+      </a>
+      <div class="font-semibold tracking-tight" style="font-family: 'Plus Jakarta Sans', Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;">BreezeChats</div>
+      <div class="ml-auto flex items-center gap-4 text-sm">
+        <span id="statusText" class="text-[#64748B]">Preparing model...</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 w-full">
+    <section id="modelStatus" class="max-w-4xl mx-auto px-4 mt-4">
+      <div class="rounded-xl bg-white ring-1 ring-black/5 p-3 shadow-sm">
+        <div class="flex items-center justify-between gap-3">
+          <div class="text-sm text-[#475569]" aria-live="polite">
+            <span id="progressLabel">Preparing model...</span>
+          </div>
+          <div class="w-40 h-2 bg-[#E2E8F0] rounded-full overflow-hidden">
+            <div id="progressBar" class="h-full bg-[#2C5DFE] rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-4 py-4">
+      <div id="chatShell" class="relative rounded-2xl bg-white ring-1 ring-black/5 shadow-sm overflow-hidden">
+        <div id="messages" class="messages-area h-[60vh] md:h-[68vh] overflow-y-auto px-4 py-5 space-y-4 bg-white" role="log" aria-live="polite" aria-relevant="additions text">
+          <!-- Messages render here -->
+        </div>
+        <div class="border-t border-black/5 bg-white sticky bottom-0 z-30">
+          <div class="p-3 md:p-4 flex items-end gap-3">
+            <label class="sr-only" for="chatInput">Message</label>
+            <textarea id="chatInput" rows="1" placeholder="Type a message..." class="flex-1 resize-none max-h-40 rounded-xl border border-black/10 bg-[#F8FAFF] px-4 py-3 shadow-inner placeholder:text-[#94A3B8] focus:outline-none focus:ring-4 focus:ring-[#2C5DFE]/20 focus:border-[#2C5DFE] transition-all duration-300" disabled></textarea>
+            <div class="flex items-center gap-2 shrink-0">
+              <button id="stopBtn" class="btn-stop inline-flex items-center justify-center rounded-xl border border-black/10 bg-white px-4 py-3 text-sm font-medium text-[#0F172A] shadow-sm transition-all duration-300 hover:bg-[#F3F6FB] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#2C5DFE]/20 disabled:opacity-50 disabled:pointer-events-none" disabled>Stop</button>
+              <button id="sendBtn" class="btn-send inline-flex items-center justify-center rounded-xl bg-[#2C5DFE] px-5 py-3 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:shadow-xl active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#2C5DFE]/30 disabled:opacity-50 disabled:pointer-events-none" disabled>Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="scripts/helpers.js"></script>
+  <script type="module" src="scripts/ai.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

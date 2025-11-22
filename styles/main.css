@@ -1,0 +1,50 @@
+/* Global typography */
+:root {
+  --brand:#2C5DFE;
+  --accent:#00BFA6;
+  --ink:#0F172A;
+  --muted:#64748B;
+  --bg:#F7F9FC;
+}
+
+body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+h1,h2,h3,.display { font-family: 'Plus Jakarta Sans', Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+/* Chat bubbles */
+.bubble { 
+  border-radius: 16px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  animation: bubbleIn 360ms cubic-bezier(.21,.64,.29,.99) both;
+}
+.bubble-user { background: var(--brand); color: #fff; }
+.bubble-assistant { background: #F1F5FF; color: var(--ink); border: 1px solid rgba(0,0,0,0.04); }
+.bubble p { margin: 0; white-space: pre-wrap; word-wrap: break-word; }
+
+/* Messages layout */
+.messages-area { scroll-behavior: smooth; }
+.message-row { display: flex; gap: 10px; align-items: flex-end; }
+.message-row.user { justify-content: flex-end; }
+.message-row.assistant { justify-content: flex-start; }
+.avatar { width: 28px; height: 28px; border-radius: 999px; box-shadow: 0 1px 0 rgba(0,0,0,0.06); background: #fff; border: 1px solid rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 12px; color: var(--brand); }
+
+/* Button micro-interactions */
+.btn-send, .btn-stop { transform: translateZ(0); }
+.btn-send:hover { filter: saturate(1.1); }
+.btn-stop:hover { filter: saturate(1.02); }
+
+/* Animations */
+@keyframes bubbleIn { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes pulseBar { 0%{ opacity: .6 } 50%{ opacity: 1 } 100%{ opacity: .6 } }
+.progress-pulse { animation: pulseBar 1.2s ease-in-out infinite; }
+
+/* Utility */
+.shadow-inner { box-shadow: inset 0 1px 2px rgba(2, 6, 23, 0.04); }
+
+/* Ensure sticky input stays above content on all screens */
+#chatShell > .sticky { z-index: 30; }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
